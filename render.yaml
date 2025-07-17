@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: geode-auth-server
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start:auth
+    envVars:
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_REDIRECT_URI
+        sync: false
+      - key: PORT
+        value: 10000
+
+  - type: worker
+    name: geode-twitch-bot
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm run start:bot
+    envVars:
+      - key: TWITCH_USERNAME
+        sync: false
+      - key: TWITCH_TOKEN
+        sync: false
+      - key: TWITCH_CHANNEL
+        sync: false
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_REDIRECT_URI
+        sync: false
